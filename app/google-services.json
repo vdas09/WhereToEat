@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "890392068939",
+    "firebase_url": "https://wheretoeat-d2275.firebaseio.com",
+    "project_id": "wheretoeat-d2275",
+    "storage_bucket": "wheretoeat-d2275.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:890392068939:android:6350133beb4f3e1611dece",
+        "android_client_info": {
+          "package_name": "com.example.wheretoeat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "890392068939-6i0178bvjqte57rpdauev69ab61i2n63.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.wheretoeat",
+            "certificate_hash": "d742845045fda8be82f980605e6b9e23960527f4"
+          }
+        },
+        {
+          "client_id": "890392068939-v1n0pi59n61h2addnk6li579muv620ar.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDUhIoEa1MnCzGHnMdWCYR6VvNt1O7fSW0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "890392068939-v1n0pi59n61h2addnk6li579muv620ar.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
