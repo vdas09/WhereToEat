@@ -7,10 +7,13 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.RadioGroup.OnCheckedChangeListener;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class SearchActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -36,16 +39,30 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
 
         spinnerCuisine_Search = findViewById(R.id.spinnerCuisine_Search);
 
-        radioGroupDollar_Search = findViewById(R.id.radioGroupDollar_Search);
-        radioGroupTime_Search = findViewById(R.id.radioGroupTime_Search);
+        radioGroupDollar_Search = (RadioGroup) findViewById(R.id.radioGroupDollar_Search);
+        radioGroupTime_Search = (RadioGroup) findViewById(R.id.radioGroupTime_Search);
 
         radioButton5Min_Search = findViewById(R.id.radioButton5Min_Search);
         radioButton10Min_Search = findViewById(R.id.radioButton10Min_Search);
         radioButton20Min_Search = findViewById(R.id.radioButton20Min_Search);
 
-        radioButtonOneDollar_Search = findViewById(R.id.radioButtonOneDollar_Search);
+        radioButtonOneDollar_Search = (RadioButton) findViewById(R.id.radioButtonOneDollar_Search);
         radioButtonTwoDollar_Search = findViewById(R.id.radioButtonTwoDollar_Search);
         radioButtonThreeDollar_Search = findViewById(R.id.radioButtonThreeDollar_Search);
+
+
+        radioGroupDollar_Search.setOnCheckedChangeListener(new OnCheckedChangeListener(){
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int i) {
+                if(i == R.id.radioButtonOneDollar_Search){
+                    Toast.makeText(SearchActivity.this,"One Dollar", Toast.LENGTH_SHORT).show();
+                }else if (i == R.id.radioButtonTwoDollar_Search){
+                    Toast.makeText(SearchActivity.this,"Two Dollar", Toast.LENGTH_SHORT).show();
+                }else if (i == R.id.radioButtonThreeDollar_Search){
+                    Toast.makeText(SearchActivity.this,"Three Dollar", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
 
 
     }
