@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
 
-                            Intent mainIntent = new Intent(MainActivity.this,RegisterActivity.class);
+                            Intent mainIntent = new Intent(MainActivity.this,SearchActivity.class);
                             startActivity(mainIntent);
 
                         } else {
