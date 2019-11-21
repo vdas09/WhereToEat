@@ -6,16 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".SearchActivity">
 
-    <CheckBox
-        android:id="@+id/checkBoxThreeDollar_Search"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="69dp"
-        android:layout_marginTop="132dp"
-        android:text="$$$"
-        app:layout_constraintStart_toEndOf="@+id/checkBoxTwoDollar_Search"
-        app:layout_constraintTop_toBottomOf="@+id/spinnerCuisine_Search" />
-
     <TextView
         android:id="@+id/textViewHey_Search"
         android:layout_width="wrap_content"
@@ -61,10 +51,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="54dp"
-        android:layout_marginTop="59dp"
+        android:layout_marginTop="46dp"
         android:text="3) Walking Time to Restaurant"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/checkBoxOneDollar_Search" />
+        app:layout_constraintTop_toBottomOf="@+id/radioGroupDollar_Search" />
 
     <Spinner
         android:id="@+id/spinnerCuisine_Search"
@@ -75,28 +65,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewCuisine_Search" />
 
-    <CheckBox
-        android:id="@+id/checkBoxOneDollar_Search"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="45dp"
-        android:text="$"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewPrice_Search" />
-
-    <CheckBox
-        android:id="@+id/checkBoxTwoDollar_Search"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="71dp"
-        android:layout_marginTop="131dp"
-        android:text="$$"
-        app:layout_constraintStart_toEndOf="@+id/checkBoxOneDollar_Search"
-        app:layout_constraintTop_toBottomOf="@+id/spinnerCuisine_Search" />
-
     <RadioGroup
-        android:id="@+id/radioGroup"
+        android:id="@+id/radioGroupTime_Search"
         android:layout_width="368dp"
         android:layout_height="36dp"
         android:layout_marginStart="14dp"
@@ -133,6 +103,36 @@
         android:layout_marginTop="28dp"
         android:text="Tell me WhereToEat!"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
+        app:layout_constraintTop_toBottomOf="@+id/radioGroupTime_Search" />
+
+    <RadioGroup
+        android:id="@+id/radioGroupDollar_Search"
+        android:layout_width="347dp"
+        android:layout_height="43dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="47dp"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewPrice_Search">
+
+        <RadioButton
+            android:id="@+id/radioButtonOneDollar_Search"
+            android:layout_width="110dp"
+            android:layout_height="wrap_content"
+            android:text="$" />
+
+        <RadioButton
+            android:id="@+id/radioButtonTwoDollar_Search"
+            android:layout_width="105dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="$$" />
+
+        <RadioButton
+            android:id="@+id/radioButtonThreeDollar_Search"
+            android:layout_width="131dp"
+            android:layout_height="wrap_content"
+            android:text="$$$" />
+    </RadioGroup>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
