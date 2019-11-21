@@ -89,10 +89,11 @@
         android:id="@+id/checkBoxTwoDollar_Search"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="71dp"
         android:layout_marginTop="131dp"
         android:text="$$"
-        app:layout_constraintTop_toBottomOf="@+id/spinnerCuisine_Search"
-        tools:layout_editor_absoluteX="161dp" />
+        app:layout_constraintStart_toEndOf="@+id/checkBoxOneDollar_Search"
+        app:layout_constraintTop_toBottomOf="@+id/spinnerCuisine_Search" />
 
     <RadioGroup
         android:id="@+id/radioGroup"
@@ -105,23 +106,23 @@
         app:layout_constraintTop_toBottomOf="@+id/textViewTime_Search">
 
         <RadioButton
-            android:id="@+id/radioButton2"
+            android:id="@+id/radioButton5Min_Search"
             android:layout_width="123dp"
             android:layout_height="wrap_content"
-            android:text="RadioButton" />
+            android:text="5 Min" />
 
         <RadioButton
-            android:id="@+id/radioButton"
+            android:id="@+id/radioButton10Min_Search"
             android:layout_width="128dp"
             android:layout_height="wrap_content"
-            android:text="RadioButton" />
+            android:text="10 Min" />
 
         <RadioButton
-            android:id="@+id/radioButton3"
+            android:id="@+id/radioButton20Min_Search"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="RadioButton" />
+            android:text="20 Min" />
     </RadioGroup>
 
     <Button
