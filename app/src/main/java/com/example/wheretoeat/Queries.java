@@ -7,17 +7,17 @@ public class Queries {
     public Restaurant qResult;
     public String qCuisineType;
     public int qPrice;
-    public int qWalkingTime;
+    //public int qWalkingTime;
     public Timestamp qTimeStamp;
     public String qActionTaken;
 
     public Queries() {
     }
 
-    public Queries(String qCuisineType, int qPrice, int qWalkingTime, Timestamp qTimeStamp) {
+    public Queries(String qCuisineType, int qPrice, Timestamp qTimeStamp) {
         this.qCuisineType = qCuisineType;
         this.qPrice = qPrice;
-        this.qWalkingTime = qWalkingTime;
+        //this.qWalkingTime = qWalkingTime;
         this.qTimeStamp = qTimeStamp;
     }
     public void setResult(Restaurant qResult) {
