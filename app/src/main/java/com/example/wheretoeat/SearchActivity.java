@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
@@ -14,6 +15,8 @@ import android.widget.RadioGroup.OnCheckedChangeListener;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.lang.reflect.Array;
 
 public class SearchActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -38,6 +41,8 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
         //textViewTime_Search = findViewById(R.id.textViewTime_Search);
 
         spinnerCuisine_Search = findViewById(R.id.spinnerCuisine_Search);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,R.array.cuisine_array, android.R.layout.simple_spinner_item);
+        spinnerCuisine_Search.setAdapter(adapter);
 
         radioGroupDollar_Search = findViewById(R.id.radioGroupDollar_Search);
 
