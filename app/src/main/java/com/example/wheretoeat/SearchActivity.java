@@ -17,6 +17,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.lang.reflect.Array;
+import java.sql.Timestamp;
+
+import com.google.firebase.firestore.FirebaseFirestore;
+
 
 public class SearchActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -25,6 +29,8 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
     Spinner spinnerCuisine_Search;
     RadioButton radioButton5Min_Search, radioButton10Min_Search, radioButton20Min_Search, radioButtonOneDollar_Search, radioButtonTwoDollar_Search, radioButtonThreeDollar_Search;
     RadioGroup radioGroupDollar_Search, radioGroupTime_Search;
+
+    int priceSelection;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,16 +62,18 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
         //radioButton10Min_Search = findViewById(R.id.radioButton10Min_Search);
         //radioButton20Min_Search = findViewById(R.id.radioButton20Min_Search);
 
-
         radioGroupDollar_Search.setOnCheckedChangeListener(new OnCheckedChangeListener(){
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
                 if(i == R.id.radioButtonOneDollar_Search){
                     Toast.makeText(SearchActivity.this,"One Dollar", Toast.LENGTH_SHORT).show();
+                    priceSelection = 1;
                 }else if (i == R.id.radioButtonTwoDollar_Search){
                     Toast.makeText(SearchActivity.this,"Two Dollar", Toast.LENGTH_SHORT).show();
+                    priceSelection = 2;
                 }else if (i == R.id.radioButtonThreeDollar_Search){
                     Toast.makeText(SearchActivity.this,"Three Dollar", Toast.LENGTH_SHORT).show();
+                    priceSelection = 3;
                 }
             }
         });
@@ -75,7 +83,19 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
 
     @Override
     public void onClick(View view) {
+
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+
         if(view == buttonTellMe_Search){
+
+            String cuisineString = spinnerCuisine_Search.getSelectedItem().toString();
+            int time = (int)(System.currentTimeMillis());
+            Timestamp tsTemp = new Timestamp(time);
+
+            Queries searchQuery = new Queries(cuisineString,priceSelection,tsTemp);
+
+            db.collection("queries").add(searchQuery);
+            
             Intent tellMeIntent = new Intent(this, ResultActivity.class);
             startActivity(tellMeIntent);
         }
