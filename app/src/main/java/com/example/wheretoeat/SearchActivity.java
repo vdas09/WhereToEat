@@ -35,20 +35,21 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
         textViewSelect_Search = findViewById(R.id.textViewSelect_Search);
         textViewHey_Search = findViewById(R.id.textViewHey_Search);
         textViewPrice_Search = findViewById(R.id.textViewPrice_Search);
-        textViewTime_Search = findViewById(R.id.textViewTime_Search);
+        //textViewTime_Search = findViewById(R.id.textViewTime_Search);
 
         spinnerCuisine_Search = findViewById(R.id.spinnerCuisine_Search);
 
-        radioGroupDollar_Search = (RadioGroup) findViewById(R.id.radioGroupDollar_Search);
-        radioGroupTime_Search = (RadioGroup) findViewById(R.id.radioGroupTime_Search);
+        radioGroupDollar_Search = findViewById(R.id.radioGroupDollar_Search);
 
-        radioButton5Min_Search = findViewById(R.id.radioButton5Min_Search);
-        radioButton10Min_Search = findViewById(R.id.radioButton10Min_Search);
-        radioButton20Min_Search = findViewById(R.id.radioButton20Min_Search);
-
-        radioButtonOneDollar_Search = (RadioButton) findViewById(R.id.radioButtonOneDollar_Search);
+        radioButtonOneDollar_Search = findViewById(R.id.radioButtonOneDollar_Search);
         radioButtonTwoDollar_Search = findViewById(R.id.radioButtonTwoDollar_Search);
         radioButtonThreeDollar_Search = findViewById(R.id.radioButtonThreeDollar_Search);
+
+        //radioGroupTime_Search = findViewById(R.id.radioGroupTime_Search);
+
+        //radioButton5Min_Search = findViewById(R.id.radioButton5Min_Search);
+        //radioButton10Min_Search = findViewById(R.id.radioButton10Min_Search);
+        //radioButton20Min_Search = findViewById(R.id.radioButton20Min_Search);
 
 
         radioGroupDollar_Search.setOnCheckedChangeListener(new OnCheckedChangeListener(){

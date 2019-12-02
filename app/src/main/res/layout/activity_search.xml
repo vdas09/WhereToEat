@@ -46,16 +46,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/spinnerCuisine_Search" />
 
-    <TextView
-        android:id="@+id/textViewTime_Search"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="52dp"
-        android:layout_marginTop="20dp"
-        android:text="3) Walking Time to Restaurant"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/radioGroupDollar_Search" />
-
     <Spinner
         android:id="@+id/spinnerCuisine_Search"
         android:layout_width="409dp"
@@ -64,45 +54,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewCuisine_Search" />
 
-    <RadioGroup
-        android:id="@+id/radioGroupTime_Search"
-        android:layout_width="368dp"
-        android:layout_height="36dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="20dp"
-        android:orientation="horizontal"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewTime_Search">
-
-        <RadioButton
-            android:id="@+id/radioButton5Min_Search"
-            android:layout_width="123dp"
-            android:layout_height="wrap_content"
-            android:text="5 Min" />
-
-        <RadioButton
-            android:id="@+id/radioButton10Min_Search"
-            android:layout_width="128dp"
-            android:layout_height="wrap_content"
-            android:text="10 Min" />
-
-        <RadioButton
-            android:id="@+id/radioButton20Min_Search"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="20 Min" />
-    </RadioGroup>
-
     <Button
         android:id="@+id/buttonTellMe_Search"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="99dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="123dp"
         android:text="Tell me WhereToEat!"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/radioGroupTime_Search" />
+        app:layout_constraintTop_toBottomOf="@+id/radioGroupDollar_Search" />
 
     <RadioGroup
         android:id="@+id/radioGroupDollar_Search"
