@@ -7,15 +7,13 @@ public class Restaurant {
     public int restRating;
     public String restCuisineType;
     public String restWebsite;
-    public int restPhoneNumber;
-    public double restProbability;
-    public double restWeight;
+    public String restPhoneNumber;
 
     public Restaurant() {
 
     }
 
-    public Restaurant(String restName, String restLocation, int restPrice, int restRating, String restCuisineType, String restWebsite, int restPhoneNumber, double restProbability, double restWeight) {
+    public Restaurant(String restName, String restLocation, int restPrice, int restRating, String restCuisineType, String restWebsite, String restPhoneNumber) {
         this.restName = restName;
         this.restLocation = restLocation;
         this.restPrice = restPrice;
@@ -23,7 +21,5 @@ public class Restaurant {
         this.restCuisineType = restCuisineType;
         this.restWebsite = restWebsite;
         this.restPhoneNumber = restPhoneNumber;
-        this.restProbability = restProbability;
-        this.restWeight = restWeight;
     }
 }

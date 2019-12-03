@@ -89,13 +89,12 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
         if(view == buttonTellMe_Search){
 
             String cuisineString = spinnerCuisine_Search.getSelectedItem().toString();
-            int time = (int)(System.currentTimeMillis());
-            Timestamp tsTemp = new Timestamp(time);
+            Timestamp tsTemp = new Timestamp(System.currentTimeMillis());
 
             Queries searchQuery = new Queries(cuisineString,priceSelection,tsTemp);
 
             db.collection("queries").add(searchQuery);
-            
+
             Intent tellMeIntent = new Intent(this, ResultActivity.class);
             startActivity(tellMeIntent);
         }
