@@ -32,6 +32,8 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
 
     int priceSelection;
 
+    public static Queries searchQuery;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,34 +68,28 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
                 if(i == R.id.radioButtonOneDollar_Search){
-                    Toast.makeText(SearchActivity.this,"One Dollar", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(SearchActivity.this,"One Dollar", Toast.LENGTH_SHORT).show();
                     priceSelection = 1;
                 }else if (i == R.id.radioButtonTwoDollar_Search){
-                    Toast.makeText(SearchActivity.this,"Two Dollar", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(SearchActivity.this,"Two Dollar", Toast.LENGTH_SHORT).show();
                     priceSelection = 2;
                 }else if (i == R.id.radioButtonThreeDollar_Search){
-                    Toast.makeText(SearchActivity.this,"Three Dollar", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(SearchActivity.this,"Three Dollar", Toast.LENGTH_SHORT).show();
                     priceSelection = 3;
                 }
             }
         });
-
-
     }
 
     @Override
     public void onClick(View view) {
 
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
-
         if(view == buttonTellMe_Search){
 
-            String cuisineString = spinnerCuisine_Search.getSelectedItem().toString();
+            String cuisineString = spinnerCuisine_Search.getSelectedItem().toString().toLowerCase();
             Timestamp tsTemp = new Timestamp(System.currentTimeMillis());
 
-            Queries searchQuery = new Queries(cuisineString,priceSelection,tsTemp);
-
-            db.collection("queries").add(searchQuery);
+            searchQuery = new Queries(cuisineString,priceSelection,tsTemp);
 
             Intent tellMeIntent = new Intent(this, ResultActivity.class);
             startActivity(tellMeIntent);

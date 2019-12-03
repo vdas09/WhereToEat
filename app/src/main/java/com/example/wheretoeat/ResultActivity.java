@@ -1,5 +1,6 @@
 package com.example.wheretoeat;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -7,6 +8,14 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
+
+import java.util.Vector;
 
 public class ResultActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -36,6 +45,37 @@ public class ResultActivity extends AppCompatActivity implements View.OnClickLis
         textViewPrice_Result = findViewById(R.id.textViewPrice_Result);
         textViewWalkingTime_Result = findViewById(R.id.textViewWalkingTime_Result);
         textViewWalkingTimeAmount_Result = findViewById(R.id.textViewWalkingTimeAmount_Result);
+
+
+        String collectionName = SearchActivity.searchQuery.qCuisineType;
+        String documentName = Integer.toString(SearchActivity.searchQuery.qPrice);
+
+        final FirebaseFirestore restaurantsDb = FirebaseFirestore.getInstance();
+        restaurantsDb.collection(collectionName).document(documentName).collection("entries").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if (task.isSuccessful()) {
+
+                    Vector<Restaurant> restaurantVector = new Vector<Restaurant>();
+
+                    for(QueryDocumentSnapshot document : task.getResult()){
+                        Restaurant resultRestaurant = document.toObject(Restaurant.class);
+                        restaurantVector.add(resultRestaurant);
+                    }
+
+                    int numOfRestaurants = restaurantVector.size();
+                    int randomNum = (int)(Math.random()*(numOfRestaurants));
+
+                    Restaurant randomResult = restaurantVector.get(randomNum);
+
+                    SearchActivity.searchQuery.qResult = randomResult;
+                    String restaurantName = randomResult.restName;
+
+                    FirebaseFirestore queriesDb = FirebaseFirestore.getInstance();
+                    queriesDb.collection("queries").document(restaurantName).collection("entries").add(SearchActivity.searchQuery);
+                }
+            }
+        });
 
     }
 
