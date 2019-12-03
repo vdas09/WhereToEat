@@ -37,6 +37,9 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         RegisterButton.setOnClickListener(this);
         RegisterReturntoLogin.setOnClickListener(this);
 
+        mAuth = FirebaseAuth.getInstance();
+
+
     }
 
     @Override
@@ -66,8 +69,9 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
                             Toast.makeText(RegisterActivity.this, "User Registration Successful", Toast.LENGTH_SHORT).show();
 
+
                         } else {
-                            // If sign in fails, display a message to the user.
+                            // If registering fails, display a message to the user.
 
                             Toast.makeText(RegisterActivity.this, "Account Registration Failed", Toast.LENGTH_SHORT).show();
 
