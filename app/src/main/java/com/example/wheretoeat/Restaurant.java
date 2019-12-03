@@ -3,7 +3,7 @@ package com.example.wheretoeat;
 public class Restaurant {
     public String restName;
     public String restLocation;
-    public int restPrice;
+    public String restPrice;
     public int restRating;
     public String restCuisineType;
     public String restWebsite;
@@ -13,7 +13,7 @@ public class Restaurant {
 
     }
 
-    public Restaurant(String restName, String restLocation, int restPrice, int restRating, String restCuisineType, String restWebsite, String restPhoneNumber) {
+    public Restaurant(String restName, String restLocation, String restPrice, int restRating, String restCuisineType, String restWebsite, String restPhoneNumber) {
         this.restName = restName;
         this.restLocation = restLocation;
         this.restPrice = restPrice;
