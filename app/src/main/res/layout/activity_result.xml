@@ -39,11 +39,12 @@
     <Button
         android:id="@+id/buttonGoToWebsite_Results"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="48dp"
         android:layout_marginStart="60dp"
+        android:layout_marginTop="11dp"
         android:text="Go To Website"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewRestaurantAddress_Result" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewRestaurantPhone_Result" />
 
     <Button
         android:id="@+id/buttonCallRestaurant_Result"
@@ -114,5 +115,15 @@
         android:text="No, reset search"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/buttonTakeMeHere_Result" />
+
+    <TextView
+        android:id="@+id/textViewRestaurantPhone_Result"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="62dp"
+        android:layout_marginTop="14dp"
+        android:text="Restaurant Phone"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewRestaurantAddress_Result" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

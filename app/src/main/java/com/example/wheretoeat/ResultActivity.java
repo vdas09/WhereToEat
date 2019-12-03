@@ -19,7 +19,7 @@ import java.util.Vector;
 
 public class ResultActivity extends AppCompatActivity implements View.OnClickListener {
 
-    TextView textViewHere_Result, textViewRestaurantName_Result, textViewRestaurantAddress_Result, textViewPrice_Result, textViewDollarSign_Result, textViewWalkingTime_Result, textViewWalkingTimeAmount_Result;
+    TextView textViewHere_Result, textViewRestaurantName_Result, textViewRestaurantAddress_Result, textViewPrice_Result, textViewDollarSign_Result, textViewRestaurantPhone_Result;
     Button buttonGoToWebsite_Result, buttonCallRestaurant_Result, buttonTakeMeHere_Result, buttonResetSearch_Result;
 
 
@@ -43,9 +43,7 @@ public class ResultActivity extends AppCompatActivity implements View.OnClickLis
         textViewRestaurantName_Result = findViewById(R.id.textViewRestaurantName_Result);
         textViewRestaurantAddress_Result = findViewById(R.id.textViewRestaurantAddress_Result);
         textViewPrice_Result = findViewById(R.id.textViewPrice_Result);
-        textViewWalkingTime_Result = findViewById(R.id.textViewWalkingTime_Result);
-        textViewWalkingTimeAmount_Result = findViewById(R.id.textViewWalkingTimeAmount_Result);
-
+        textViewRestaurantPhone_Result = findViewById(R.id.textViewRestaurantPhone_Result);
 
         String collectionName = SearchActivity.searchQuery.qCuisineType;
         String documentName = Integer.toString(SearchActivity.searchQuery.qPrice);
@@ -73,9 +71,16 @@ public class ResultActivity extends AppCompatActivity implements View.OnClickLis
 
                     FirebaseFirestore queriesDb = FirebaseFirestore.getInstance();
                     queriesDb.collection("queries").document(restaurantName).collection("entries").add(SearchActivity.searchQuery);
+
+                    textViewDollarSign_Result.setText(randomResult.restPrice);
+                    textViewRestaurantName_Result.setText(randomResult.restName);
+                    textViewRestaurantAddress_Result.setText(randomResult.restLocation);
+                    textViewRestaurantPhone_Result.setText(randomResult.restPhoneNumber);
+
                 }
             }
         });
+
 
     }
 
