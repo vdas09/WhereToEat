@@ -13,6 +13,9 @@
         android:layout_marginStart="52dp"
         android:layout_marginTop="32dp"
         android:text="Hey there, user!"
+        android:textColor="#3F51B5"
+        android:textSize="18sp"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -23,6 +26,7 @@
         android:layout_marginStart="52dp"
         android:layout_marginTop="8dp"
         android:text="Please select your preferences."
+        android:textColor="#03A9F4"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewHey_Search" />
 
@@ -33,6 +37,7 @@
         android:layout_marginStart="52dp"
         android:layout_marginTop="8dp"
         android:text="1) Type of Cuisine"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewSelect_Search" />
 
@@ -43,14 +48,18 @@
         android:layout_marginStart="52dp"
         android:layout_marginTop="20dp"
         android:text="2) Price"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/spinnerCuisine_Search" />
 
     <Spinner
         android:id="@+id/spinnerCuisine_Search"
-        android:layout_width="409dp"
-        android:layout_height="wrap_content"
+        android:layout_width="314dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="52dp"
         android:layout_marginTop="12dp"
+        android:gravity="center"
+        android:textAlignment="viewStart"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewCuisine_Search" />
 
@@ -59,7 +68,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="99dp"
-        android:layout_marginTop="123dp"
+        android:layout_marginTop="90dp"
         android:text="Tell me WhereToEat!"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/radioGroupDollar_Search" />

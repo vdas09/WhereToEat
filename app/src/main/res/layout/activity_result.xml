@@ -13,6 +13,9 @@
         android:layout_marginStart="60dp"
         android:layout_marginTop="28dp"
         android:text="Here's What We Found"
+        android:textColor="#3F51B5"
+        android:textSize="18sp"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -23,6 +26,7 @@
         android:layout_marginStart="64dp"
         android:layout_marginTop="8dp"
         android:text="Restaurant Name"
+        android:textColor="#2196F3"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewHere_Result" />
 
@@ -33,6 +37,7 @@
         android:layout_marginStart="64dp"
         android:layout_marginTop="13dp"
         android:text="Restaurant Address"
+        android:textColor="#2196F3"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewRestaurantName_Result" />
 
@@ -76,35 +81,15 @@
         app:layout_constraintStart_toEndOf="@+id/textViewPrice_Result"
         app:layout_constraintTop_toBottomOf="@+id/buttonCallRestaurant_Result" />
 
-    <TextView
-        android:id="@+id/textViewWalkingTime_Result"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="71dp"
-        android:layout_marginTop="46dp"
-        android:text="Walking Time"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewPrice_Result" />
-
-    <TextView
-        android:id="@+id/textViewWalkingTimeAmount_Result"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="54dp"
-        android:layout_marginTop="47dp"
-        android:text="Minutes_Holder"
-        app:layout_constraintStart_toEndOf="@+id/textViewWalkingTime_Result"
-        app:layout_constraintTop_toBottomOf="@+id/textViewDollarSign_Result" />
-
     <Button
         android:id="@+id/buttonTakeMeHere_Result"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="140dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="78dp"
         android:text="Take me here!"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewWalkingTimeAmount_Result" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewDollarSign_Result" />
 
     <Button
         android:id="@+id/buttonResetSearch_Result"
@@ -123,6 +108,7 @@
         android:layout_marginStart="62dp"
         android:layout_marginTop="14dp"
         android:text="Restaurant Phone"
+        android:textColor="#2196F3"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewRestaurantAddress_Result" />
 
