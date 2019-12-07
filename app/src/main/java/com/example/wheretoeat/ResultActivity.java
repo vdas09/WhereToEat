@@ -11,6 +11,9 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.webkit.URLUtil;
 import android.widget.Button;
@@ -19,6 +22,7 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -35,6 +39,8 @@ public class ResultActivity extends AppCompatActivity implements View.OnClickLis
 
     String restWebsite;
     boolean searchComplete = false;
+
+    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,43 +64,50 @@ public class ResultActivity extends AppCompatActivity implements View.OnClickLis
         textViewPrice_Result = findViewById(R.id.textViewPrice_Result);
         textViewRestaurantPhone_Result = findViewById(R.id.textViewRestaurantPhone_Result);
 
+        mAuth = FirebaseAuth.getInstance();
+
         String collectionName = SearchActivity.searchQuery.qCuisineType;
         String documentName = Integer.toString(SearchActivity.searchQuery.qPrice);
 
-        final FirebaseFirestore restaurantsDb = FirebaseFirestore.getInstance();
-        restaurantsDb.collection(collectionName).document(documentName).collection("entries").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                if (task.isSuccessful()) {
+        try {
+            final FirebaseFirestore restaurantsDb = FirebaseFirestore.getInstance();
+            restaurantsDb.collection(collectionName).document(documentName).collection("entries").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                    if (task.isSuccessful()) {
+                        Vector<Restaurant> restaurantVector = new Vector<Restaurant>();
 
-                    Vector<Restaurant> restaurantVector = new Vector<Restaurant>();
+                        for(QueryDocumentSnapshot document : task.getResult()){
+                            Restaurant resultRestaurant = document.toObject(Restaurant.class);
+                            restaurantVector.add(resultRestaurant);
+                        }
 
-                    for(QueryDocumentSnapshot document : task.getResult()){
-                        Restaurant resultRestaurant = document.toObject(Restaurant.class);
-                        restaurantVector.add(resultRestaurant);
+                        int numOfRestaurants = restaurantVector.size();
+                        int randomNum = (int)(Math.random()*(numOfRestaurants));
+
+                        Restaurant randomResult = restaurantVector.get(randomNum);
+
+                        SearchActivity.searchQuery.qResult = randomResult;
+                        String restaurantName = randomResult.restName;
+                        restWebsite = randomResult.restWebsite;
+
+                        FirebaseFirestore queriesDb = FirebaseFirestore.getInstance();
+                        queriesDb.collection("queries").document(restaurantName).collection("entries").add(SearchActivity.searchQuery);
+
+                        textViewDollarSign_Result.setText(randomResult.restPrice);
+                        textViewRestaurantName_Result.setText(randomResult.restName);
+                        textViewRestaurantAddress_Result.setText(randomResult.restLocation);
+                        textViewRestaurantPhone_Result.setText(randomResult.restPhoneNumber);
+
+                        searchComplete = true;
+                    } else {
+                        Toast.makeText(ResultActivity.this, "Failed", Toast.LENGTH_SHORT).show();
                     }
-
-                    int numOfRestaurants = restaurantVector.size();
-                    int randomNum = (int)(Math.random()*(numOfRestaurants));
-
-                    Restaurant randomResult = restaurantVector.get(randomNum);
-
-                    SearchActivity.searchQuery.qResult = randomResult;
-                    String restaurantName = randomResult.restName;
-                    restWebsite = randomResult.restWebsite;
-
-                    FirebaseFirestore queriesDb = FirebaseFirestore.getInstance();
-                    queriesDb.collection("queries").document(restaurantName).collection("entries").add(SearchActivity.searchQuery);
-
-                    textViewDollarSign_Result.setText(randomResult.restPrice);
-                    textViewRestaurantName_Result.setText(randomResult.restName);
-                    textViewRestaurantAddress_Result.setText(randomResult.restLocation);
-                    textViewRestaurantPhone_Result.setText(randomResult.restPhoneNumber);
-
-                    searchComplete = true;
                 }
-            }
-        });
+            });   
+        } catch (Exception e) {
+            Toast.makeText(this, "Failed", Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override
@@ -146,5 +159,27 @@ public class ResultActivity extends AppCompatActivity implements View.OnClickLis
         } catch (ActivityNotFoundException exception) {
             Toast.makeText(this, exception.toString(), Toast.LENGTH_SHORT).show();
         }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu, menu);
+
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == R.id.itemSignOut) {
+            Toast.makeText(this, "Signing user out!", Toast.LENGTH_SHORT).show();
+            mAuth.signOut();
+            Intent loginIntent = new Intent(ResultActivity.this, MainActivity.class);
+            startActivity(loginIntent);
+        } else if (item.getItemId() == R.id.itemSearchMain) {
+            Intent searchIntent = new Intent(ResultActivity.this, SearchActivity.class);
+            startActivity(searchIntent);
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

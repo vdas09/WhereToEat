@@ -1,9 +1,13 @@
 package com.example.wheretoeat;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -19,6 +23,7 @@ import android.widget.Toast;
 import java.lang.reflect.Array;
 import java.sql.Timestamp;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 
@@ -33,6 +38,8 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
     int priceSelection;
 
     public static Queries searchQuery;
+
+    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,12 +86,20 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
                 }
             }
         });
+
+        mAuth = FirebaseAuth.getInstance();
     }
 
     @Override
     public void onClick(View view) {
 
         if(view == buttonTellMe_Search){
+            
+            if (!(radioButtonOneDollar_Search.isChecked() || radioButtonTwoDollar_Search.isChecked() || radioButtonThreeDollar_Search.isChecked())) {
+                Toast.makeText(this, "Must select a maximum price range", Toast.LENGTH_SHORT).show();
+                
+                return;
+            }
 
             String cuisineString = spinnerCuisine_Search.getSelectedItem().toString().toLowerCase();
             Timestamp tsTemp = new Timestamp(System.currentTimeMillis());
@@ -94,5 +109,26 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
             Intent tellMeIntent = new Intent(this, ResultActivity.class);
             startActivity(tellMeIntent);
         }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu, menu);
+
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == R.id.itemSignOut) {
+            Toast.makeText(this, "Signing user out!", Toast.LENGTH_SHORT).show();
+            mAuth.signOut();
+            Intent loginIntent = new Intent(SearchActivity.this, MainActivity.class);
+            startActivity(loginIntent);
+        } else if (item.getItemId() == R.id.itemSearchMain) {
+            Toast.makeText(this, "You are already on this page!", Toast.LENGTH_SHORT).show();
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
