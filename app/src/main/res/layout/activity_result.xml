@@ -81,7 +81,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="60dp"
         android:layout_marginTop="32dp"
-        android:text="Price (out of 3)"
+        android:text="Price (Out of $$$):"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/buttonCallRestaurant_Result" />
 
@@ -126,7 +126,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="60dp"
         android:layout_marginTop="25dp"
-        android:text="Rating (out of 5.0)"
+        android:text="Rating:"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewRestaurantPhone_Result" />
 
