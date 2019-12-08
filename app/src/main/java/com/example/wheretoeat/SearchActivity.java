@@ -96,7 +96,7 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
         if(view == buttonTellMe_Search){
             
             if (!(radioButtonOneDollar_Search.isChecked() || radioButtonTwoDollar_Search.isChecked() || radioButtonThreeDollar_Search.isChecked())) {
-                Toast.makeText(this, "Must select a maximum price range", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Must select a price range", Toast.LENGTH_SHORT).show();
                 
                 return;
             }

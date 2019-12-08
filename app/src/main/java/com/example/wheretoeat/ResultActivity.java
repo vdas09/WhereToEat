@@ -140,7 +140,6 @@ public class ResultActivity extends AppCompatActivity implements View.OnClickLis
             try {
                 String encodedAddr = URLEncoder.encode(textViewRestaurantAddress_Result.getText().toString(), StandardCharsets.UTF_8.toString());
                 String fullAddr = "https://www.google.com/maps/dir//" + encodedAddr;
-
                 openURL(fullAddr);
             } catch (UnsupportedEncodingException ex) {
                 Toast.makeText(this, "Error opening maps", Toast.LENGTH_SHORT).show();
