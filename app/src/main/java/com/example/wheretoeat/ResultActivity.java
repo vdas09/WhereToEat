@@ -100,7 +100,7 @@ public class ResultActivity extends AppCompatActivity implements View.OnClickLis
                         queriesDb.collection("queries").document(restaurantName).collection("entries").add(SearchActivity.searchQuery);
 
                         textViewDollarSign_Result.setText(randomResult.restPrice);
-                        textViewRatingValue.setText(Double.toString(randomResult.restRating));
+                        textViewRatingValue.setText(Double.toString(randomResult.restRating) + "/5.0");
                         textViewRestaurantName_Result.setText(randomResult.restName);
                         textViewRestaurantAddress_Result.setText(randomResult.restLocation);
                         textViewRestaurantPhone_Result.setText(randomResult.restPhoneNumber);
