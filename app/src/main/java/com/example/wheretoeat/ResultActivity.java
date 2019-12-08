@@ -17,6 +17,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.webkit.URLUtil;
 import android.widget.Button;
+import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -34,11 +35,12 @@ import java.util.Vector;
 
 public class ResultActivity extends AppCompatActivity implements View.OnClickListener {
 
-    TextView textViewHere_Result, textViewRestaurantName_Result, textViewRestaurantAddress_Result, textViewPrice_Result, textViewDollarSign_Result, textViewRestaurantPhone_Result;
+    TextView textViewRating_Result, textViewRatingValue, textViewHere_Result, textViewRestaurantName_Result, textViewRestaurantAddress_Result, textViewPrice_Result, textViewDollarSign_Result, textViewRestaurantPhone_Result;
     Button buttonGoToWebsite_Result, buttonCallRestaurant_Result, buttonTakeMeHere_Result, buttonResetSearch_Result;
 
     String restWebsite;
     boolean searchComplete = false;
+
 
     private FirebaseAuth mAuth;
 
@@ -46,6 +48,9 @@ public class ResultActivity extends AppCompatActivity implements View.OnClickLis
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_result);
+
+        textViewRating_Result = findViewById(R.id.textViewRating_Result);
+        textViewRatingValue = findViewById(R.id.textViewRatingValue);
 
         buttonCallRestaurant_Result = findViewById(R.id.buttonCallRestaurant_Result);
         buttonGoToWebsite_Result = findViewById(R.id.buttonGoToWebsite_Results);
@@ -95,6 +100,7 @@ public class ResultActivity extends AppCompatActivity implements View.OnClickLis
                         queriesDb.collection("queries").document(restaurantName).collection("entries").add(SearchActivity.searchQuery);
 
                         textViewDollarSign_Result.setText(randomResult.restPrice);
+                        textViewRatingValue.setText(Double.toString(randomResult.restRating));
                         textViewRestaurantName_Result.setText(randomResult.restName);
                         textViewRestaurantAddress_Result.setText(randomResult.restLocation);
                         textViewRestaurantPhone_Result.setText(randomResult.restPhoneNumber);

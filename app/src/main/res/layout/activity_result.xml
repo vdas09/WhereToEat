@@ -46,10 +46,10 @@
         android:layout_width="wrap_content"
         android:layout_height="48dp"
         android:layout_marginStart="60dp"
-        android:layout_marginTop="11dp"
+        android:layout_marginTop="25dp"
         android:text="Go To Website"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewRestaurantPhone_Result" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewRating_Result" />
 
     <Button
         android:id="@+id/buttonCallRestaurant_Result"
@@ -62,24 +62,25 @@
         app:layout_constraintTop_toBottomOf="@+id/buttonGoToWebsite_Results" />
 
     <TextView
+        android:id="@+id/textViewDollarSign_Result"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="60dp"
+        android:text="Loading $..."
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.513"
+        app:layout_constraintStart_toEndOf="@+id/textViewPrice_Result"
+        app:layout_constraintTop_toBottomOf="@+id/buttonCallRestaurant_Result" />
+
+    <TextView
         android:id="@+id/textViewPrice_Result"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="60dp"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="32dp"
         android:text="Price"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonCallRestaurant_Result" />
-
-    <TextView
-        android:id="@+id/textViewDollarSign_Result"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
-        android:layout_marginEnd="60dp"
-        android:text="Loading $..."
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textViewPrice_Result"
         app:layout_constraintTop_toBottomOf="@+id/buttonCallRestaurant_Result" />
 
     <Button
@@ -87,7 +88,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="50dp"
-        android:layout_marginTop="78dp"
+        android:layout_marginTop="58dp"
         android:layout_marginEnd="50dp"
         android:text="Take me here!"
         app:layout_constraintEnd_toEndOf="parent"
@@ -99,7 +100,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="50dp"
-        android:layout_marginTop="26dp"
+        android:layout_marginTop="13dp"
         android:layout_marginEnd="50dp"
         android:text="No, reset search"
         app:layout_constraintEnd_toEndOf="parent"
@@ -116,5 +117,25 @@
         android:textColor="#2196F3"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewRestaurantAddress_Result" />
+
+    <TextView
+        android:id="@+id/textViewRating_Result"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="65dp"
+        android:layout_marginTop="25dp"
+        android:text="Rating"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewRestaurantPhone_Result" />
+
+    <TextView
+        android:id="@+id/textViewRatingValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="73dp"
+        android:layout_marginTop="25dp"
+        android:text="Loading..."
+        app:layout_constraintStart_toEndOf="@+id/textViewRating_Result"
+        app:layout_constraintTop_toBottomOf="@+id/textViewRestaurantPhone_Result" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
