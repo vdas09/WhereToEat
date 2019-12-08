@@ -45,9 +45,11 @@
         android:id="@+id/buttonGoToWebsite_Results"
         android:layout_width="wrap_content"
         android:layout_height="48dp"
-        android:layout_marginStart="60dp"
+        android:layout_marginStart="50dp"
         android:layout_marginTop="25dp"
+        android:layout_marginEnd="50dp"
         android:text="Go To Website"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewRating_Result" />
 
@@ -55,9 +57,11 @@
         android:id="@+id/buttonCallRestaurant_Result"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="60dp"
+        android:layout_marginStart="50dp"
         android:layout_marginTop="19dp"
+        android:layout_marginEnd="50dp"
         android:text="Call Restaurant"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/buttonGoToWebsite_Results" />
 
@@ -69,8 +73,6 @@
         android:layout_marginEnd="60dp"
         android:text="Loading $..."
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.513"
-        app:layout_constraintStart_toEndOf="@+id/textViewPrice_Result"
         app:layout_constraintTop_toBottomOf="@+id/buttonCallRestaurant_Result" />
 
     <TextView
@@ -79,7 +81,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="60dp"
         android:layout_marginTop="32dp"
-        android:text="Price"
+        android:text="Price (out of 3)"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/buttonCallRestaurant_Result" />
 
@@ -122,9 +124,9 @@
         android:id="@+id/textViewRating_Result"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="65dp"
+        android:layout_marginStart="60dp"
         android:layout_marginTop="25dp"
-        android:text="Rating"
+        android:text="Rating (out of 5.0)"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewRestaurantPhone_Result" />
 
@@ -132,10 +134,10 @@
         android:id="@+id/textViewRatingValue"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="73dp"
         android:layout_marginTop="25dp"
-        android:text="Loading..."
-        app:layout_constraintStart_toEndOf="@+id/textViewRating_Result"
+        android:layout_marginEnd="60dp"
+        android:text="Loading Rating..."
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewRestaurantPhone_Result" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
