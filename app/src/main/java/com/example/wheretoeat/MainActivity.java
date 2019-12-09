@@ -3,9 +3,12 @@ package com.example.wheretoeat;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
+import android.webkit.URLUtil;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -18,7 +21,7 @@ import com.google.firebase.auth.FirebaseAuth;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     EditText Email, Password;
-    Button SignIn, Register;
+    Button SignIn, Register, ReactApp;
 
     private FirebaseAuth mAuth;
 
@@ -31,9 +34,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Password = findViewById(R.id.Password);
         SignIn = findViewById(R.id.SignIn);
         Register = findViewById(R.id.Register);
+        ReactApp = findViewById(R.id.ReactApp);
+
 
         SignIn.setOnClickListener(this);
         Register.setOnClickListener(this);
+        ReactApp.setOnClickListener(this);
 
         mAuth = FirebaseAuth.getInstance();
     }
@@ -41,17 +47,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View view) {
-        if (Email.getText().toString().isEmpty() || Password.getText().toString().isEmpty()) {
-            Toast.makeText(this, "All fields are required", Toast.LENGTH_SHORT).show();
+        if (view == ReactApp) {
+            String reactAppURL = "https://wheretoeat-webapp.rishipr.now.sh/";
+            openURL(reactAppURL);
+        } else {
+            if (Email.getText().toString().isEmpty() || Password.getText().toString().isEmpty()) {
+                Toast.makeText(this, "All fields are required", Toast.LENGTH_SHORT).show();
 
-            return;
-        }
+                return;
+            }
 
-        if (view == Register) {
-            registerUser(Email.getText().toString(), Password.getText().toString());
-        }
-        else if (view == SignIn) {
-            loginUser(Email.getText().toString(), Password.getText().toString());
+            if (view == Register) {
+                registerUser(Email.getText().toString(), Password.getText().toString());
+            }
+            else if (view == SignIn) {
+                loginUser(Email.getText().toString(), Password.getText().toString());
+            }
         }
     }
 
@@ -93,5 +104,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                     }
                 });
+    }
+
+    public void openURL(String url) {
+        String urlString = URLUtil.guessUrl(url);
+
+        try {
+            Intent openURL = new Intent(android.content.Intent.ACTION_VIEW);
+            openURL.setData(Uri.parse(urlString));
+            startActivity(openURL);
+        } catch (ActivityNotFoundException exception) {
+            Toast.makeText(this, exception.toString(), Toast.LENGTH_SHORT).show();
+        }
     }
 }
