@@ -97,7 +97,7 @@ public class ResultActivity extends AppCompatActivity implements View.OnClickLis
                         restWebsite = randomResult.restWebsite;
 
                         FirebaseFirestore queriesDb = FirebaseFirestore.getInstance();
-                        queriesDb.collection("queries").document(restaurantName).collection("entries").add(SearchActivity.searchQuery);
+                        queriesDb.collection("queries-2").document(restaurantName).collection("entries").add(SearchActivity.searchQuery);
 
                         textViewDollarSign_Result.setText(randomResult.restPrice);
                         textViewRatingValue.setText(Double.toString(randomResult.restRating) + "/5.0");
