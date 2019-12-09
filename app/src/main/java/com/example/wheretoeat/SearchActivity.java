@@ -24,6 +24,7 @@ import java.lang.reflect.Array;
 import java.sql.Timestamp;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 
@@ -104,7 +105,13 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
             String cuisineString = spinnerCuisine_Search.getSelectedItem().toString().toLowerCase();
             Timestamp tsTemp = new Timestamp(System.currentTimeMillis());
 
-            searchQuery = new Queries(cuisineString,priceSelection,tsTemp);
+            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+            String userEmail = "No Email Found";
+
+            if (user != null) {
+                userEmail = user.getEmail();
+            }
+            searchQuery = new Queries(cuisineString,priceSelection,tsTemp, userEmail);
 
             Intent tellMeIntent = new Intent(this, ResultActivity.class);
             startActivity(tellMeIntent);
