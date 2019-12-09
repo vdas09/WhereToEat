@@ -45,11 +45,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View view) {
+        if (Email.getText().toString().isEmpty() || Password.getText().toString().isEmpty()) {
+            Toast.makeText(this, "All fields are required", Toast.LENGTH_SHORT).show();
+
+            return;
+        }
 
         if (view == Register) {
-            Intent Register = new Intent(this,RegisterActivity.class);
-            startActivity(Register);
-
+            registerUser(Email.getText().toString(), Password.getText().toString());
         }
         else if (view == SignIn) {
             loginUser(Email.getText().toString(), Password.getText().toString());
@@ -72,6 +75,26 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         }
 
                         // ...
+                    }
+                });
+    }
+
+    public void registerUser(String email, String password) {
+        mAuth.createUserWithEmailAndPassword(email, password)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+
+                            Toast.makeText(MainActivity.this, "User Registration Successful", Toast.LENGTH_SHORT).show();
+
+                        } else {
+                            // If sign in fails, display a message to the user.
+
+                            Toast.makeText(MainActivity.this, "Account Registration Failed", Toast.LENGTH_SHORT).show();
+
+                        }
+
                     }
                 });
     }

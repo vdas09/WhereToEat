@@ -10,9 +10,12 @@
         android:id="@+id/textViewHey_Search"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="52dp"
+        android:layout_marginStart="60dp"
         android:layout_marginTop="32dp"
         android:text="Hey there, user!"
+        android:textColor="#3F51B5"
+        android:textSize="18sp"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -20,9 +23,10 @@
         android:id="@+id/textViewSelect_Search"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="52dp"
+        android:layout_marginStart="60dp"
         android:layout_marginTop="8dp"
         android:text="Please select your preferences."
+        android:textColor="#03A9F4"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewHey_Search" />
 
@@ -30,9 +34,10 @@
         android:id="@+id/textViewCuisine_Search"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="52dp"
+        android:layout_marginStart="60dp"
         android:layout_marginTop="8dp"
-        android:text="1) Type of Cuisine"
+        android:text="Type of Cuisine"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewSelect_Search" />
 
@@ -40,17 +45,21 @@
         android:id="@+id/textViewPrice_Search"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="52dp"
+        android:layout_marginStart="60dp"
         android:layout_marginTop="20dp"
-        android:text="2) Price"
+        android:text="Price"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/spinnerCuisine_Search" />
 
     <Spinner
         android:id="@+id/spinnerCuisine_Search"
-        android:layout_width="409dp"
-        android:layout_height="wrap_content"
+        android:layout_width="314dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="60dp"
         android:layout_marginTop="12dp"
+        android:gravity="center"
+        android:textAlignment="viewStart"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewCuisine_Search" />
 
@@ -58,9 +67,11 @@
         android:id="@+id/buttonTellMe_Search"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="99dp"
-        android:layout_marginTop="123dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="90dp"
+        android:layout_marginEnd="50dp"
         android:text="Tell me WhereToEat!"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/radioGroupDollar_Search" />
 
@@ -68,7 +79,7 @@
         android:id="@+id/radioGroupDollar_Search"
         android:layout_width="347dp"
         android:layout_height="43dp"
-        android:layout_marginStart="32dp"
+        android:layout_marginStart="60dp"
         android:layout_marginTop="16dp"
         android:orientation="horizontal"
         app:layout_constraintStart_toStartOf="parent"
