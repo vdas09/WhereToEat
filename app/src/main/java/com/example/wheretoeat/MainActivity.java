@@ -17,6 +17,7 @@ import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
+import com.facebook.login.Login;
 import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
@@ -55,35 +56,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         login_button.setOnClickListener(this);
 
         mAuth = FirebaseAuth.getInstance();
-        callbackManager = CallbackManager.Factory.create();
-        LoginManager.getInstance().registerCallback(callbackManager,
-                new FacebookCallback<LoginResult>() {
-                    @Override
-                    public void onSuccess(LoginResult loginResult) {
-                        Intent mainIntent = new Intent(MainActivity.this,SearchActivity.class);
-                        startActivity(mainIntent);
-                    }
-
-                    @Override
-                    public void onCancel() {
-                        // App code
-                    }
-
-                    @Override
-                    public void onError(FacebookException exception) {
-                        // App code
-                    }
-                });
-
-
-        AccessToken accessToken = AccessToken.getCurrentAccessToken();
-        boolean isLoggedIn = accessToken != null && !accessToken.isExpired();
-
-
-
-        LoginManager.getInstance().logInWithReadPermissions(this, Arrays.asList("public_profile"));
-
-
     }
 
 
@@ -98,7 +70,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if (view == ReactApp) {
             String reactAppURL = "https://wheretoeat-webapp.rishipr.now.sh/";
             openURL(reactAppURL);
-        } else {
+        } else if (view == Register || view == SignIn){
             if (Email.getText().toString().isEmpty() || Password.getText().toString().isEmpty()) {
                 Toast.makeText(this, "All fields are required", Toast.LENGTH_SHORT).show();
 
@@ -112,6 +84,31 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 loginUser(Email.getText().toString(), Password.getText().toString());
             }
 
+        } else if (view == login_button) {
+            callbackManager = CallbackManager.Factory.create();
+            LoginManager.getInstance().registerCallback(callbackManager,
+                    new FacebookCallback<LoginResult>() {
+                        @Override
+                        public void onSuccess(LoginResult loginResult) {
+                            Intent mainIntent = new Intent(MainActivity.this,SearchActivity.class);
+                            startActivity(mainIntent);
+                        }
+
+                        @Override
+                        public void onCancel() {
+                            // App code
+                        }
+
+                        @Override
+                        public void onError(FacebookException exception) {
+                            // App code
+                        }
+                    });
+
+            AccessToken accessToken = AccessToken.getCurrentAccessToken();
+            boolean isLoggedIn = accessToken != null && !accessToken.isExpired();
+
+            LoginManager.getInstance().logInWithReadPermissions(this, Arrays.asList("public_profile"));
         }
     }
 
