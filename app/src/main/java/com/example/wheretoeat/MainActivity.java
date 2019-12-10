@@ -17,10 +17,8 @@ import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
-import com.facebook.login.Login;
 import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
-import com.facebook.login.widget.LoginButton;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -33,7 +31,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     EditText Email, Password;
     Button SignIn, Register, ReactApp;
     CallbackManager callbackManager;
-    LoginButton login_button;
+    Button FacebookButton;
 
     private FirebaseAuth mAuth;
 
@@ -47,15 +45,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         SignIn = findViewById(R.id.SignIn);
         Register = findViewById(R.id.Register);
         ReactApp = findViewById(R.id.ReactApp);
-        login_button = findViewById(R.id.login_button);
-
+        FacebookButton = findViewById(R.id.facebookButton);
 
         SignIn.setOnClickListener(this);
         Register.setOnClickListener(this);
         ReactApp.setOnClickListener(this);
-        login_button.setOnClickListener(this);
+        FacebookButton.setOnClickListener(this);
 
         mAuth = FirebaseAuth.getInstance();
+
+        // Sign out of FB
+        mAuth.signOut();
     }
 
 
@@ -84,7 +84,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 loginUser(Email.getText().toString(), Password.getText().toString());
             }
 
-        } else if (view == login_button) {
+        } else if (view == FacebookButton) {
             callbackManager = CallbackManager.Factory.create();
             LoginManager.getInstance().registerCallback(callbackManager,
                     new FacebookCallback<LoginResult>() {
@@ -108,7 +108,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             AccessToken accessToken = AccessToken.getCurrentAccessToken();
             boolean isLoggedIn = accessToken != null && !accessToken.isExpired();
 
-            LoginManager.getInstance().logInWithReadPermissions(this, Arrays.asList("public_profile"));
+            LoginManager.getInstance().logInWithReadPermissions(this, Arrays.asList(
+                    "email", "public_profile"));
         }
     }
 

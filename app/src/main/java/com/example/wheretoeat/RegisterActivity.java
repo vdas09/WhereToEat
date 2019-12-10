@@ -38,8 +38,6 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         RegisterReturntoLogin.setOnClickListener(this);
 
         mAuth = FirebaseAuth.getInstance();
-
-
     }
 
     @Override
