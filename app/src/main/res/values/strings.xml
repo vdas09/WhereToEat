@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">WhereToEat</string>
 
+    <string name="facebook_app_id">2638494969535447</string>
+    <string name="fb_login_protocol_scheme">fb2638494969535447</string>
+
     <string-array name="cuisine_array">
         <item>Indian</item>
         <item>Italian</item>

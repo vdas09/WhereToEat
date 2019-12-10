@@ -13,15 +13,26 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.facebook.AccessToken;
+import com.facebook.CallbackManager;
+import com.facebook.FacebookCallback;
+import com.facebook.FacebookException;
+import com.facebook.login.LoginManager;
+import com.facebook.login.LoginResult;
+import com.facebook.login.widget.LoginButton;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
+import java.util.Arrays;
+
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     EditText Email, Password;
     Button SignIn, Register, ReactApp;
+    CallbackManager callbackManager;
+    LoginButton login_button;
 
     private FirebaseAuth mAuth;
 
@@ -35,15 +46,52 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         SignIn = findViewById(R.id.SignIn);
         Register = findViewById(R.id.Register);
         ReactApp = findViewById(R.id.ReactApp);
+        login_button = findViewById(R.id.login_button);
 
 
         SignIn.setOnClickListener(this);
         Register.setOnClickListener(this);
         ReactApp.setOnClickListener(this);
+        login_button.setOnClickListener(this);
 
         mAuth = FirebaseAuth.getInstance();
+        callbackManager = CallbackManager.Factory.create();
+        LoginManager.getInstance().registerCallback(callbackManager,
+                new FacebookCallback<LoginResult>() {
+                    @Override
+                    public void onSuccess(LoginResult loginResult) {
+                        Intent mainIntent = new Intent(MainActivity.this,SearchActivity.class);
+                        startActivity(mainIntent);
+                    }
+
+                    @Override
+                    public void onCancel() {
+                        // App code
+                    }
+
+                    @Override
+                    public void onError(FacebookException exception) {
+                        // App code
+                    }
+                });
+
+
+        AccessToken accessToken = AccessToken.getCurrentAccessToken();
+        boolean isLoggedIn = accessToken != null && !accessToken.isExpired();
+
+
+
+        LoginManager.getInstance().logInWithReadPermissions(this, Arrays.asList("public_profile"));
+
+
     }
 
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        callbackManager.onActivityResult(requestCode, resultCode, data);
+        super.onActivityResult(requestCode, resultCode, data);
+    }
 
     @Override
     public void onClick(View view) {
@@ -63,6 +111,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             else if (view == SignIn) {
                 loginUser(Email.getText().toString(), Password.getText().toString());
             }
+
         }
     }
 
